@@ -13,9 +13,9 @@ jobs:
           path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Get dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm ci
       - name: Lint application
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm run lint
   test:
     runs-on: ubuntu-latest
@@ -23,6 +23,14 @@ jobs:
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
-      - name: Run tests
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Get dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Run tests
         run: npm run test:unit
