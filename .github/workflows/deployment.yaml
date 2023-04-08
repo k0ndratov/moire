@@ -20,6 +20,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
+        if: steps.cache-npm.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Run linter
