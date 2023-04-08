@@ -1,0 +1,17 @@
+name: deployment
+on: push
+jobs:
+  linter:
+    runs-on: ubunty-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Lint application
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        uses: npm run lint
