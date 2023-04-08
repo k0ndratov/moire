@@ -2,7 +2,7 @@ name: deployment
 on: push
 jobs:
   linter:
-    runs-on: ubunty-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
