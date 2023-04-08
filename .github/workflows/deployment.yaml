@@ -14,4 +14,4 @@ jobs:
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Lint application
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        uses: npm run lint
+        run: npm run lint
