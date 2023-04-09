@@ -1,21 +1,47 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import CatalogView from "@/views/CatalogView.vue";
+import ProductView from "@/views/ProductView.vue";
+import СartView from "@/views/CartView.vue";
+import OrderNewView from "@/views/OrderNewView.vue";
+import OrderView from "@/views/OrderView.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "catalogView",
+    component: CatalogView,
+    meta: { name: "Каталог" },
   },
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  // },
+  {
+    path: "/product/:id",
+    name: "productView",
+    component: ProductView,
+    meta: { name: "Продукт" },
+  },
+  {
+    path: "/cart",
+    name: "cartView",
+    component: СartView,
+    meta: { name: "Корзина" },
+  },
+  {
+    path: "/order/new",
+    name: "orderNewView",
+    component: OrderNewView,
+    meta: { name: "Новый заказ" },
+  },
+  {
+    path: "/order/:id",
+    name: "orderView",
+    component: OrderView,
+    meta: { name: "Заказ" },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notFound",
+    component: NotFound,
+  },
 ];
 
 const router = createRouter({
