@@ -35,7 +35,7 @@
           <fieldset class="form__block">
             <legend class="form__legend">Категория</legend>
             <label class="form__label form__label--select">
-              <select class="form__select" type="text" name="category">
+              <select class="form__select" name="category">
                 <option value="value1">Все категории</option>
                 <option value="value2">Футболки</option>
                 <option value="value3">Бюстгалтеры</option>
@@ -852,5 +852,3 @@
 </template>
 
 <script setup></script>
-
-<style lang="scss" scoped></style>
